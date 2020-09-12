@@ -3,13 +3,11 @@ import processing.sound.*;
 Amplitude amp;
 AudioIn in;
 
-
 PImage img;
 
 void setup()
 {
   size(700, 700);  
-  background(255, 255, 255); 
   
   img = loadImage("./src/normal.png");
   
@@ -19,7 +17,6 @@ void setup()
   amp.input(in);
 }
 
-//プログラムを実行したとき、ループして実行されるブロック
 void draw()
 {
     background(255, 255, 255); 
@@ -30,7 +27,27 @@ void draw()
     
     imageMode(CENTER);
     image(img, width/2, height/2, 500, 500 + imgAddSize);
+}
 
-    
-    println(imgAddSize);
+void keyPressed() {
+  switchImageUrl(key);
+}
+
+void switchImageUrl(char key) {
+  String src = "";
+  switch(key){
+    case '1':
+      src = "./src/normal.png";
+      break;
+    case '2':
+      src = "./src/point.png";
+      break;
+    case '3':
+      src = "./src/surprise.png";
+      break;
+    default:
+      src = "./src/normal.png";
+      break;
+  }
+  img = loadImage(src);
 }
