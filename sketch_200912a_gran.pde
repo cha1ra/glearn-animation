@@ -1,16 +1,36 @@
-//プログラムを実行したとき、始めに一回だけ実行されるブロック
+// https://processing.org/reference/libraries/sound/Amplitude_analyze_.html
+import processing.sound.*;
+Amplitude amp;
+AudioIn in;
+
+
+PImage img;
+
 void setup()
 {
-  size(700,700);  //ウィンドウのサイズを設定するメソッド。700x700に設定
-  background(0,255,0); //背景色を設定する関数。緑に設定
-  fill(255,0,0); //図形の塗りつぶし色を設定するメソッド。赤に設定
+  size(700, 700);  
+  background(255, 255, 255); 
+  
+  img = loadImage("./src/normal.png");
+  
+  amp = new Amplitude(this);
+  in = new AudioIn(this, 0);
+  in.start();
+  amp.input(in);
 }
 
 //プログラムを実行したとき、ループして実行されるブロック
 void draw()
 {
-    int x = 350; //円の中心のx座標を表すint型の変数、350を代入
-    int y = 350; //円の中心のy座標を表すint型の変数、350を代入
-    int d = 200; //円の直径を表すint型の変数、200を代入
-    ellipse(x,y,d,d); //円（楕円）を描くメソッド
+    background(255, 255, 255); 
+  
+    float ampNum = amp.analyze();    
+    // グラン君のサイズ調整用
+    float imgAddSize = floor(ampNum*200);
+    
+    imageMode(CENTER);
+    image(img, width/2, height/2, 500, 500 + imgAddSize);
+
+    
+    println(imgAddSize);
 }
