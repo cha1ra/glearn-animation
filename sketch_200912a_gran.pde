@@ -19,14 +19,14 @@ void setup()
 
 void draw()
 {
-    background(255, 255, 255); 
+    background(0, 255, 0); 
   
     float ampNum = amp.analyze();    
     // グラン君のサイズ調整用
-    float imgAddSize = floor(ampNum*200);
+    float imgAddSize = floor(ampNum*300)*1.5;
     
     imageMode(CENTER);
-    image(img, width/2, height/2, 500, 500 + imgAddSize);
+    image(img, width/2, (height/5*3) - (imgAddSize/2), 500, 500 + imgAddSize);
 }
 
 void keyPressed() {
